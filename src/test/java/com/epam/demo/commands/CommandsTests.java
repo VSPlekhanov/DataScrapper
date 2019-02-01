@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import com.epam.demo.utils.Constants;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +67,24 @@ public class CommandsTests {
 
         Mockito.verify(table).write(text1.getName(), Constants.NUMBER_OF_WORDS, map1);
         Mockito.verify(table).write(text2.getName(), Constants.NUMBER_OF_WORDS, map2);
+
+    }
+
+    @Test
+    public void ExtractSentencesTest_usualData_shouldPass() {
+        InputData inputData = Mockito.mock(InputData.class);
+        Text text1 = new Text("1", "word as word. not this one");
+        Text text2 = new Text("2", "as it is. world is word.nopeAs wordNope");
+        Mockito.when(inputData.getTexts()).thenReturn(Arrays.asList(text1, text2));
+        Mockito.when(inputData.getWords()).thenReturn(Arrays.asList("word", "as"));
+
+        Table table = Mockito.mock(Table.class);
+        ExtractSentences extractSentences = new ExtractSentences(inputData, table);
+        extractSentences.run();
+
+        Mockito.verify(table).write(text1.getName(), Constants.SENTENCES_WITH_WORDS,
+                                    Collections.singletonList("word as word"));
+        Mockito.verify(table).write(text2.getName(), Constants.SENTENCES_WITH_WORDS, Arrays.asList("as it is", " world is word"));
 
     }
 

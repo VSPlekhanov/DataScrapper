@@ -14,7 +14,6 @@ import com.epam.demo.utils.Constants;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -25,11 +24,10 @@ public class Processor {
     private static Logger logger = LogManager.getLogger(Processor.class);
 
     public static void main(String[] args) {
-        logger.debug("init");
+        logger.debug("application starts");
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         try {
             InputData inputData = new CommandLineData(args);
-
             Table table = new TextTable();
             CommandFabric commandFabric = new ConsoleCommandFabric(inputData, table);
             List<Runnable> commands = new ArrayList<>();

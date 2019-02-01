@@ -23,14 +23,13 @@ public class CountNumberOfWordsOccurrence implements Runnable {
     @Override
     public void run() {
         for (final Text text : inputData.getTexts()) {
-            Map<String, Long> wordsCount = inputData.getWords().stream().collect(Collectors.toMap(Function.identity(),
-                                                                                                  word -> Arrays.stream(
-                                                                                                          text.getValue()
-                                                                                                              .split("\\W"))
-                                                                                                                .filter(w -> w
-                                                                                                                        .equalsIgnoreCase(
-                                                                                                                                word))
-                                                                                                                .count()));
+            Map<String, Long> wordsCount =
+                    inputData.getWords().stream()
+                             .collect(Collectors.toMap(Function.identity(),
+                                                       word ->
+                                                               Arrays.stream(text.getValue().split("\\W"))
+                                                                     .filter(w -> w.equalsIgnoreCase(word))
+                                                                     .count()));
             table.write(text.getName(), Constants.NUMBER_OF_WORDS, wordsCount);
         }
     }

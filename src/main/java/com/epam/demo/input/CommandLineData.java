@@ -22,15 +22,23 @@ public class CommandLineData implements InputData {
     private final List<String> commands;
     private final List<String> words;
 
+    /**
+     * This method parse data from command line arguments, read files and store this data.
+     * If it is impossible to read the file, whis method would skip this file
+     * If second command line argument starts with '-', the program would perceive this argument and all subsequent
+     * as commands
+     * @param args - command line arguments
+     * @throws CommandLineParseException if there is not enough arguments (less than 2)
+     */
     public CommandLineData(String[] args) {
         if (args.length < 2) {
-            throw new CommandLineParseException(Constants.NOT_ENOUPH_CLA);
+            throw new CommandLineParseException(Constants.NOT_ENOUGH_CLA);
         }
 
         String[] filePaths = args[FILE_PATHS_INDEX].split(",");
         texts = new ArrayList<>();
         for (final String filePath : filePaths) {
-            String value = null;
+            String value;
             try {
                 value = new String(Files.readAllBytes(Paths.get(filePath)));
                 texts.add(new Text(filePath, value));
@@ -41,7 +49,7 @@ public class CommandLineData implements InputData {
 
         int firstCommandIndex = 1;
 
-        if (args.length > 3) {
+        if (args.length > 2 && !args[1].startsWith("-")) {
             firstCommandIndex = 2;
             words = Arrays.asList(args[WORDS_INDEX].split(","));
         } else {

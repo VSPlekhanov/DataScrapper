@@ -24,6 +24,8 @@ public class ConsoleCommandFabric implements CommandFabric {
                 return new CountNumberOfWordsOccurrence(inputData, table);
             case "-c":
                 return new CountNumberOfCharacters(inputData, table);
+            case "-e":
+                return new ExtractSentences(inputData, table);
             default:
                 throw new CommandFabricException(Constants.UNKNOWN_COMMAND + command);
         }
