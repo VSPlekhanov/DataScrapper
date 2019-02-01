@@ -1,6 +1,4 @@
-package output;
-
-import model.Table;
+package com.epam.demo.output;
 
 public interface Output {
 

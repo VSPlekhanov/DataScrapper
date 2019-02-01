@@ -1,4 +1,4 @@
-package commands;
+package com.epam.demo.commands;
 
 public interface CommandFabric {
 

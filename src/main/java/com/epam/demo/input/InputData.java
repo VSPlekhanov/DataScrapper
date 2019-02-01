@@ -1,6 +1,6 @@
-package input;
+package com.epam.demo.input;
 
-import model.Text;
+import com.epam.demo.model.Text;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package commands;
+package com.epam.demo.commands;
 
-import input.InputData;
-import model.Table;
-import model.Text;
-import utils.Constants;
+import com.epam.demo.input.InputData;
+import com.epam.demo.model.Table;
+import com.epam.demo.model.Text;
+import com.epam.demo.utils.Constants;
 
 public class CountNumberOfCharacters implements Runnable {
     private final InputData inputData;

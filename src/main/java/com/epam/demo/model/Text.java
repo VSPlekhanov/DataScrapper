@@ -1,4 +1,4 @@
-package model;
+package com.epam.demo.model;
 
 public class Text {
     private final String name;
