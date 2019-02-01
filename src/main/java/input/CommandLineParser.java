@@ -17,6 +17,9 @@ public class CommandLineParser implements InputData {
 
 
     public CommandLineParser(String[] args) throws IOException {
+        if (args.length < 2)
+            throw new RuntimeException();
+        // TODO: 01.02.19 handle this situation
         String[] filePaths = args[0].split(",");
         texts = new ArrayList<>();
         for (final String filePath : filePaths) {

@@ -31,10 +31,13 @@ public class TextTable implements Table {
             return "";
         }
         StringBuilder out = new StringBuilder();
-        out.append("\t\t\t").append(String.join("\t", table.values().iterator().next().keySet()));
+        out.append("\t\t\t").append(String.join("\t", table.values().iterator().next().keySet())).append("\n");
         for (final Map.Entry<String, Map<String, String>> stringMapEntry : table.entrySet()) {
-            out.append(stringMapEntry.getKey()).append(" -  ").append(String.join(" ",
-                                                                                  stringMapEntry.getValue().values()));
+            out.append(stringMapEntry.getKey())
+               .append(" -  ")
+               .append(String.join(" ",
+                                   stringMapEntry.getValue().values()))
+               .append("\n");
         }
         return out.toString();
     }
